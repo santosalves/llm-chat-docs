@@ -32,23 +32,18 @@ def main():
 
     with open('config.json', 'r') as config_file:
         conf = load_config(config_file)
-    config_file.close()
 
     llm = Ollama(**conf)
 
     while True:
         prompt = entrada_do_usuario()
 
-        match prompt:
+        match prompt.strip():
             case "/sair":
                 break
-            case "/help":
+            case "/help" | "/?":
                 ajuda()
-            case "/?":
-                ajuda()
-            case "":
-                tente_novamente()
-            case " ":
+            case "" | " ":
                 tente_novamente()
             case _:
                 print(resposta_llm(llm, prompt))
