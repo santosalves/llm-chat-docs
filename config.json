@@ -1,0 +1,5 @@
+{
+    "model": "llama3",
+    "base_url": "http://localhost:11434",
+    "system": "Reponda em português do Brasil."
+}
