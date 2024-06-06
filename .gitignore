@@ -2,3 +2,4 @@
 .DS*
 .venv
 teste.py
+local_*

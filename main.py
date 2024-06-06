@@ -38,6 +38,7 @@ def main():
 
     while True:
         prompt = entrada_do_usuario()
+
         match prompt:
             case "/sair":
                 break

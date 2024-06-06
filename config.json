@@ -1,5 +1,11 @@
 {
     "model": "llama3",
-    "base_url": "http://localhost:11434",
-    "system": "Reponda em português do Brasil."
+    "base_url": "http://ollama.local/",
+    "cache": "true",
+    "keep_alive": "10m",
+    "temperature": "0.5",
+    "top_p": "0.9",
+    "top_k": "40",
+    "system": "Responda em português do Brasil."
 }
+
