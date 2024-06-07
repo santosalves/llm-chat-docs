@@ -3,3 +3,4 @@
 .venv
 teste.py
 local_*
+__pycache__

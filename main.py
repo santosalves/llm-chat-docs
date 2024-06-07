@@ -1,52 +1,25 @@
-from langchain_community.llms import Ollama
 from os import system
-from json import load as load_config
-
-
-def resposta_llm(llm_connection, pergunta):
-    for token in llm_connection.stream(pergunta):
-        print(token, end="")
-
-    return ""
-
-
-def entrada_do_usuario():
-    return str(input(">>> "))
-
-
-def tente_novamente():
-    print("Entrada inválida, digite algo coerente!")
-
-
-def ajuda():
-    comandos = """
-    Comandos:
-        /help - Mostra essa mensagem
-        /sair - Encerra o programa
-    """
-    print(comandos)
+from langchain_community.llms import Ollama
+from chat_functions import chat
 
 
 def main():
     system("clear")
 
-    with open('config.json', 'r') as config_file:
-        conf = load_config(config_file)
-
-    llm = Ollama(**conf)
+    llm = Ollama(**chat.carregar_configuracoes())
 
     while True:
-        prompt = entrada_do_usuario()
+        prompt = chat.entrada_do_usuario()
 
         match prompt.strip():
             case "/sair":
                 break
             case "/help" | "/?":
-                ajuda()
-            case "" | " ":
-                tente_novamente()
+                chat.ajuda()
+            case "":
+                chat.tente_novamente()
             case _:
-                print(resposta_llm(llm, prompt))
+                print(chat.resposta_llm(llm, prompt))
 
 
 if __name__ == "__main__":
