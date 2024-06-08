@@ -6,12 +6,6 @@ def carregar_docs():
     from json import load as load_config
 
 
-    carregar_doc = PyPDFLoader('../docs/local_listagem.pdf')
-    documentos = carregar_doc.load_and_split()
-
-    fragmenta_texto = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    docs = fragmenta_texto.split_documents(documentos)
-
     try:
         with open("../conf/rag_config.json", "r") as config_file:
             config = load_config(config_file)
@@ -22,10 +16,13 @@ def carregar_docs():
               na pasta 'conf' do projeto com as configuraçes.
               """)
 
+    carregar_doc = PyPDFLoader('../docs/local_carro.pdf')
+    documentos = carregar_doc.load_and_split()
+
+    fragmenta_texto = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+    docs = fragmenta_texto.split_documents(documentos)
+
     embeddings = OllamaEmbeddings(**config)
     db = FAISS.from_documents(docs, embeddings)
     
     return db
-
-
-
