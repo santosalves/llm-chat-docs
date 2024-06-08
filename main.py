@@ -1,6 +1,6 @@
 from os import system
 from langchain_community.llms import Ollama
-from chat_functions import chat
+from chat_functions import chat, ram_rag
 
 
 def main():

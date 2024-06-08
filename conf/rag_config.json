@@ -1,0 +1,7 @@
+{
+    "model": "nomic-embed-text",
+    "base_url": "http://ollama.local/",
+    "temperature": "0.5",
+    "top_p": "0.9",
+    "top_k": "40"
+}

@@ -9,7 +9,7 @@ def carregar_configuracoes():
     except FileNotFoundError:
         print("""
               Arquivo de configuração não encontrado, crie um arquivo chamado 'config.json' 
-              na raiz do projeto com as configuraçes padrão.
+              na pasta 'conf' do projeto com as configuraçes.
               """)
 
     return config
