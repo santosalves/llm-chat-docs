@@ -25,4 +25,11 @@ def carregar_docs():
     embeddings = OllamaEmbeddings(**config)
     db = FAISS.from_documents(docs, embeddings)
     
-    return db
+    return db.as_retriever()
+
+
+# db = carregar_docs()
+# query = db.similarity_search("Qual é o modelo do carro vendido e quanto KM ele tem?. Responda no formato: O veículo {carro} tem {km} KM")
+# print(query[0].page_content)
+# print("-----------------")
+

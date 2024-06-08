@@ -16,6 +16,10 @@ def carregar_configuracoes():
 
 
 def resposta_llm(llm_connection, pergunta):
+    return llm_connection.invoke(pergunta)
+
+
+def resposta_llm_stream(llm_connection, pergunta):
     for token in llm_connection.stream(pergunta):
         print(token, end="")
 
