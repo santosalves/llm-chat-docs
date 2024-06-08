@@ -1,10 +1,11 @@
 def carregar_configuracoes():
-    from json import load
+    from json import load as load_config
 
 
     try:
-        with open('config.json', 'r') as config_file:
-            config = load(config_file)
+        with open("../conf/app_config.json", "r") as config_file:
+            config = load_config(config_file)
+
     except FileNotFoundError:
         print("""
               Arquivo de configuração não encontrado, crie um arquivo chamado 'config.json' 
