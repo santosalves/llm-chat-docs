@@ -1,4 +1,4 @@
-def carregar_docs():
+def carregar_docs(nome_do_doc):
     from langchain_community.document_loaders import PyPDFLoader
     from langchain_community.vectorstores import FAISS
     from langchain_text_splitters import CharacterTextSplitter
@@ -16,7 +16,7 @@ def carregar_docs():
               na pasta 'conf' do projeto com as configuraçes.
               """)
 
-    carregar_doc = PyPDFLoader('../docs/local_carro.pdf')
+    carregar_doc = PyPDFLoader(f'../docs/{nome_do_doc}')
     documentos = carregar_doc.load_and_split()
 
     fragmenta_texto = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
@@ -26,10 +26,3 @@ def carregar_docs():
     db = FAISS.from_documents(docs, embeddings)
     
     return db.as_retriever()
-
-
-# db = carregar_docs()
-# query = db.similarity_search("Qual é o modelo do carro vendido e quanto KM ele tem?. Responda no formato: O veículo {carro} tem {km} KM")
-# print(query[0].page_content)
-# print("-----------------")
-
