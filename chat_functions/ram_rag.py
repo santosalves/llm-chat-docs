@@ -23,6 +23,13 @@ def carregar_docs(nome_do_doc):
     docs = fragmenta_texto.split_documents(documentos)
 
     embeddings = OllamaEmbeddings(**config)
-    db = FAISS.from_documents(docs, embeddings)
     
+    while True:
+        try:
+            db = FAISS.load_local(f'../data/db_{nome_do_doc}', embeddings, allow_dangerous_deserialization=True)
+            break
+        except RuntimeError:
+            db = FAISS.from_documents(docs, embeddings)
+            db.save_local(f'../data/db_{nome_do_doc}')
+
     return db.as_retriever()
