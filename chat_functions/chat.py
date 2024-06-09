@@ -1,9 +1,9 @@
+from json import load as load_config
+
+
 def carregar_configuracoes():
-    from json import load as load_config
-
-
     try:
-        with open('../conf/app_config.json', 'r') as config_file:
+        with open('conf/app_config.json', 'r') as config_file:
             config = load_config(config_file)
 
     except FileNotFoundError:
@@ -15,6 +15,21 @@ def carregar_configuracoes():
     return config
 
 
+def entrada_do_usuario(input_client='CLI'):
+    if input_client == 'CLI':
+        return str(input('\033[32m' + '>>> ' + '\033[m'))
+    elif input_client == 'WEB':
+        from streamlit import chat_input, chat_message, write
+
+        user_input = chat_input("Digite sua mensagem...")
+
+        if user_input:
+            with chat_message('user'):
+                write(user_input)
+
+            return user_input
+
+
 def resposta_llm(llm_connection, pergunta):
     return llm_connection.invoke(pergunta)
 
@@ -24,10 +39,6 @@ def resposta_llm_stream(llm_connection, pergunta):
         print(token, end='')
 
     return ''
-
-
-def entrada_do_usuario():
-    return str(input('\033[32m' + '>>> ' + '\033[m'))
 
 
 def tente_novamente():

@@ -4,10 +4,10 @@ def carregar_docs(nome_do_doc):
     from langchain_text_splitters import CharacterTextSplitter
     from langchain_community.embeddings import OllamaEmbeddings
     from json import load as load_config
-
-
+    
+    
     try:
-        with open('../conf/rag_config.json', 'r') as config_file:
+        with open('conf/rag_config.json', 'r') as config_file:
             config = load_config(config_file)
 
     except FileNotFoundError:
@@ -16,7 +16,7 @@ def carregar_docs(nome_do_doc):
               na pasta 'conf' do projeto com as configuraçes.
               ''')
 
-    carregar_doc = PyPDFLoader(f'../docs/{nome_do_doc}')
+    carregar_doc = PyPDFLoader(f'docs/{nome_do_doc}')
     documentos = carregar_doc.load_and_split()
 
     fragmenta_texto = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
@@ -26,10 +26,10 @@ def carregar_docs(nome_do_doc):
     
     while True:
         try:
-            db = FAISS.load_local(f'../data/db_{nome_do_doc}', embeddings, allow_dangerous_deserialization=True)
+            db = FAISS.load_local(f'data/db_{nome_do_doc}', embeddings, allow_dangerous_deserialization=True)
             break
         except RuntimeError:
             db = FAISS.from_documents(docs, embeddings)
-            db.save_local(f'../data/db_{nome_do_doc}')
+            db.save_local(f'data/db_{nome_do_doc}')
 
     return db.as_retriever()
