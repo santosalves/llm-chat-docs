@@ -7,14 +7,14 @@ def carregar_docs(nome_do_doc):
 
 
     try:
-        with open("../conf/rag_config.json", "r") as config_file:
+        with open('../conf/rag_config.json', 'r') as config_file:
             config = load_config(config_file)
 
     except FileNotFoundError:
-        print("""
+        print('''
               Arquivo de configuração não encontrado, crie um arquivo chamado 'rag_config.json' 
               na pasta 'conf' do projeto com as configuraçes.
-              """)
+              ''')
 
     carregar_doc = PyPDFLoader(f'../docs/{nome_do_doc}')
     documentos = carregar_doc.load_and_split()
