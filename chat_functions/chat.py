@@ -15,19 +15,8 @@ def carregar_configuracoes():
     return config
 
 
-def entrada_do_usuario(input_client='CLI'):
-    if input_client == 'CLI':
-        return str(input('\033[32m' + '>>> ' + '\033[m'))
-    elif input_client == 'WEB':
-        from streamlit import chat_input, chat_message, write
-
-        user_input = chat_input("Digite sua mensagem...")
-
-        if user_input:
-            with chat_message('user'):
-                write(user_input)
-
-            return user_input
+def entrada_do_usuario():
+    return str(input('\033[32m' + '>>> ' + '\033[m'))
 
 
 def resposta_llm(llm_connection, pergunta):

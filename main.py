@@ -21,7 +21,7 @@ def app():
     vectordb = ram_rag.carregar_docs(getenv('DOCUMENTO'))
 
     while True:
-        prompt = chat.entrada_do_usuario(input_client=getenv('INPUT_CLIENT'))
+        prompt = chat.entrada_do_usuario()
         try:
             query = vectordb.invoke(prompt)
             query = query[0].page_content
@@ -50,7 +50,4 @@ def app():
 
 
 if __name__ == '__main__':
-    from os import chdir
-    chdir('../')
-    
     app()
