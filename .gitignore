@@ -4,4 +4,4 @@
 teste.py
 local_*
 __pycache__
-db_*
+db_local*
