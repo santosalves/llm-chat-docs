@@ -5,3 +5,4 @@ teste.py
 local_*
 __pycache__
 db_local*
+.idea*
