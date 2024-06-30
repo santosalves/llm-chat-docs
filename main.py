@@ -10,9 +10,9 @@ from os import getenv
 
 def app():
     system('clear')
-    load_dotenv()
+    load_dotenv(override=True)
     set_llm_cache(InMemoryCache())
-
+    
     try:
         llm = Ollama(**chat.carregar_configuracoes())
     except:

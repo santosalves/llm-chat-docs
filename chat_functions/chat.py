@@ -1,4 +1,5 @@
 from json import load as load_config
+from os import getenv
 
 
 def carregar_configuracoes():
@@ -16,6 +17,8 @@ def carregar_configuracoes():
 
 
 def entrada_do_usuario():
+    print(f'\033[93mDocumento de contexto: {getenv("DOCUMENTO")}\033[0m')
+
     return str(input('\033[32m' + '>>> ' + '\033[m'))
 
 

@@ -6,5 +6,5 @@
     "temperature": "0.5",
     "top_p": "0.9",
     "top_k": "40",
-    "system": "Responda em português do Brasil."
+    "system": "Responda em português do Brasil. E sempre que possível, de forma objetiva."
 }
