@@ -1,5 +1,5 @@
 {
-    "model": "llama3",
+    "model": "llama3:8b",
     "base_url": "http://ollama.local/",
     "cache": "true",
     "keep_alive": "10m",

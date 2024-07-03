@@ -16,7 +16,7 @@ def app():
     try:
         llm = Ollama(**chat.carregar_configuracoes())
     except:
-        print('Não foi possível carregar as configurações do LLM. Verifique o arquivo de configurações!')
+        print('\033[91mNão foi possível carregar as configurações do LLM. Verifique o arquivo de configurações!\033[m')
 
     vectordb = ram_rag.carregar_docs(getenv('DOCUMENTO'))
 
@@ -42,9 +42,8 @@ def app():
                         print(chat.resposta_llm_stream(llm, prompt + query))
                         break
                     except Exception as e:
-                        e = str(e).split('.')[0].replace('Details', '').strip()
                         print(f'Erro ao chamar Ollama: \033[91m{e}\033[m\n')
-                        sleep(5)
+                        sleep(2)
                 else:
                     print('Falha ao obter resposta do Ollama após várias tentativas.')
 

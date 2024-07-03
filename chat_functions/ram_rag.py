@@ -29,13 +29,13 @@ def carregar_docs(nome_do_doc):
     
     while True:
         try:
-            db = FAISS.load_local(f'data/db_{nome_do_doc}', embeddings, allow_dangerous_deserialization=True)
+            db = FAISS.load_local(f'data/db_{nome_do_doc[:-4]}', embeddings, allow_dangerous_deserialization=True)
             break
         except RuntimeError:
-            print('\033[31mErro! Gerando um novo DB local...\033[0m')
+            print('\033[31mNão encontrado! Gerando um novo DB local...\033[0m')
             
             db = FAISS.from_documents(docs, embeddings)
-            db.save_local(f'data/db_{nome_do_doc}')
+            db.save_local(f'data/db_{nome_do_doc[:-4]}')
 
             sleep(4)
             system('clear')
