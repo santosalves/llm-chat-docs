@@ -3,6 +3,7 @@ from langchain_community.llms import Ollama
 from langchain.globals import set_llm_cache
 from langchain_community.cache import InMemoryCache
 from chat_functions import chat, ram_rag
+from chat_functions.config_reader import ConfigReader
 from time import sleep
 from dotenv import load_dotenv
 from os import getenv
@@ -13,8 +14,10 @@ def app():
     load_dotenv(override=True)
     set_llm_cache(InMemoryCache())
     
+
+    conf = ConfigReader('conf/app_config.json')
     try:
-        llm = Ollama(**chat.carregar_configuracoes())
+        llm = Ollama(**conf.get_config())
     except:
         print('\033[91mNão foi possível carregar as configurações do LLM. Verifique o arquivo de configurações!\033[m')
 

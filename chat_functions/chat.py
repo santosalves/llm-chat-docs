@@ -1,19 +1,4 @@
-from json import load as load_config
 from os import getenv
-
-
-def carregar_configuracoes():
-    try:
-        with open('conf/app_config.json', 'r') as config_file:
-            config = load_config(config_file)
-
-    except FileNotFoundError:
-        print('''
-              Arquivo de configuração não encontrado, crie um arquivo chamado 'config.json' 
-              na pasta 'conf' do projeto com as configuraçes.
-              ''')
-
-    return config
 
 
 def entrada_do_usuario():
