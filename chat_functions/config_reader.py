@@ -12,10 +12,10 @@ class ConfigReader:
             with open(file_path, 'r') as config_file:
                 self._config = load(config_file)
         except FileNotFoundError:
-            if file == 'teste2.py':
+            if file == 'chat.py':
                 print(ConfigReader.msg('app_config.json'))
 
-            elif file == 'rag_config.py':
+            elif file == 'ram_rag.py':
                 print(ConfigReader.msg('rag_config.json'))
     
 
