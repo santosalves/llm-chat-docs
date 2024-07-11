@@ -1,7 +1,7 @@
 def carregar_docs(nome_do_doc):
     from chat_functions.rag.document_loader import DocumentLoader
+    from chat_functions.rag.text_splitter import TextSplitter
     from langchain_community.vectorstores import FAISS
-    from langchain_text_splitters import CharacterTextSplitter
     from langchain_community.embeddings import OllamaEmbeddings
     from chat_functions.config_reader import ConfigReader
     from os import system
@@ -14,8 +14,8 @@ def carregar_docs(nome_do_doc):
     carregar_doc = DocumentLoader(f'docs/{nome_do_doc}', f'{nome_do_doc.split(".")[-1]}')
     documentos = carregar_doc.load()
 
-    fragmenta_texto = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    docs = fragmenta_texto.split_documents(documentos)
+    fragmenta_texto = TextSplitter(chunk_size=1000, chunk_overlap=0)
+    docs = fragmenta_texto.split_docs(documentos)
 
     embeddings = OllamaEmbeddings(**config.get_config())
     
