@@ -29,6 +29,8 @@ para o modelo principal e outro exclusivo para RAG.
 ### Variáveis Ambiente
 
 * `DOCUMENTO`: Nome do arquivo a ser carregado no programa. O arquivo precisa estar dentro da pasta `docs/`.
+* `CHUNK_SIZE`: Variável de ambiente que define o tamanho do chunk utilizado para fragmentar o texto.
+* `CHUNK_OVERLAP`: Variável de ambiente que define o overlap entre chunks utilizado na fragmentação do texto.
 
 ## Como Executar
 
