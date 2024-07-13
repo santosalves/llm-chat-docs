@@ -2,7 +2,8 @@ from os import system
 from langchain_community.llms import Ollama
 from langchain.globals import set_llm_cache
 from langchain_community.cache import InMemoryCache
-from chat_functions import chat, ram_rag
+from chat_functions.rag.ram_rag import RamRag
+from chat_functions import chat
 from chat_functions.config_reader import ConfigReader
 from time import sleep
 from dotenv import load_dotenv
@@ -21,7 +22,8 @@ def app():
     except:
         print('\033[91mNão foi possível carregar as configurações do LLM. Verifique o arquivo de configurações!\033[m')
 
-    vectordb = ram_rag.carregar_docs(getenv('DOCUMENTO'))
+    rag = RamRag('ollama')
+    vectordb = rag.process_doc(getenv('DOCUMENTO'))
 
     while True:
         prompt = chat.entrada_do_usuario()
